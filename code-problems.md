@@ -112,7 +112,7 @@ class SmallestIntegerFinder {
   <summary>Click here to reveal a possible solution.</summary>
   <p>
 
-  ```javascriptclass 
+  ```javascript
   // SOLUTION 1
 function findSmallestInt(array) {
   let smallestInt = null;
