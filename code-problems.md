@@ -97,10 +97,8 @@ Given [34, -345, -1, 100] your solution will return -345
 You can assume, for the purpose of this problem, that the supplied array will not be empty.
 
 ```javascript
-class SmallestIntegerFinder {
-  findSmallestInt(args) {
-    // Happy coding!  
-  }
+function findSmallestInt(args) {
+  // Happy coding!  
 }
 ```
 
@@ -112,8 +110,8 @@ class SmallestIntegerFinder {
   <summary>Click here to reveal a possible solution.</summary>
   <p>
 
-  ```javascript
-  // SOLUTION 1
+```javascript
+// SOLUTION 1
 function findSmallestInt(array) {
   let smallestInt = null;
 
@@ -145,7 +143,7 @@ function findSmallestInt(array) {
 function findSmallestInt(array) {
   return Math.min(...array);
 }
-  ```
+```
 
 </p>
 </details>
