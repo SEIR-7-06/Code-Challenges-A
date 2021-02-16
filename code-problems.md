@@ -37,45 +37,44 @@ findOdd([5,4,3,2,1,5,4,3,2,10,10]);
   <summary>Click here to reveal a possible solution.</summary>
   <p>
 
-  ```javascript
-  // decent solution, bad efficiency
-  function findOdd(array) {
-    // object to serve as counter for all the items in the array (the items will be the keys, the counts will be the values)
-    var obj = {};
-    array.forEach(function(e) {    // for each item e in the array
-      if(obj[e]) {
-        obj[e]++;       // if we already encountered this item, then increments the counter
-      } else {
-        obj[e] = 1;     // otherwise start a new counter (initialized with 1)
+```javascript
+// SOLUTION 1
+function findOddOccurrence(array) {
+  let oddOccuringNum = null;
+
+  // Loop through array
+  array.forEach((int) => {
+    // for each int
+      
+    // find number of occurrences
+      let occurrences = 0;
+
+      array.forEach((num) => {
+        if (num === int) {
+          occurrences += 1;
+        }
+      });
+
+      // if occurrences is odd return
+      if (occurrences % 2 === 1) {
+        oddOccuringNum = int;
       }
-    });
+  });
 
-    // select only the numbers that occured an odd number of times
-    var result;                   // the result
-    for(var e in obj) {           // for each key e in the hash (the key are the items of the array)
-      if(obj[e] % 2) {            // if the count of that item is an odd number, set its value to result and break loop
-        result = parseInt(e);
-      }
-    }
+  return oddOccuringNum;
+}
 
-
-    return result;
-  }
-  
-  // better solution
-  function findOdd(A) {
-    var obj = {};
-    A.forEach(function(el){
-      obj[el] ? obj[el]++ : obj[el] = 1;
-    });
-
-    for(prop in obj) {
-      if(obj[prop] % 2 !== 0) return Number(prop);
-    }
-  }
-  
-  // best solution (even better if you explain why it works)
-  const findOdd = (xs) => xs.reduce((a, b) => a ^ b);
+// SOLUTION 2
+// Loop through array
+  // for each int
+  // find number of occurrences
+  // if occurrences is odd return int
+function findOddOccurrence(array) {
+  return array.find((int) => {
+    const occurrences = array.filter(num => num === int).length;
+    return occurrences % 2 === 1;
+  });
+}
   ```
 
 </p>
@@ -114,37 +113,38 @@ class SmallestIntegerFinder {
   <p>
 
   ```javascriptclass 
-  // basic solution
-  SmallestIntegerFinder {
-    findSmallestInt(args) {
-      var lowest;
-      for(var i in args){
-        if(i==0){
-          lowest = args[i];
-        }
-        else {
-          if(lowest >= args[i]){
-          lowest = args[i];
-          }
-        }
+  // SOLUTION 1
+function findSmallestInt(array) {
+  let smallestInt = null;
+
+  // Loop through array
+  array.forEach((int) => {
+    if (smallestInt === null) {
+      smallestInt = int;
+    } else {
+      // if number is smallest so far make it new smallest number
+      if (int < smallestInt) {
+        smallestInt = int;
       }
-      return lowest;
     }
-  }
-  
-  // better
-  class SmallestIntegerFinder {
-    findSmallestInt(args) {
-      return args.sort((a,b)=>a-b)[0];
-    }
-  }
-  
-  // best
-  class SmallestIntegerFinder {
-    findSmallestInt(args) {
-      return Math.min(...args)
-    }
-  }
+  });
+  // return the smallest number
+  return smallestInt;
+}
+
+///////////////////////////////////////////////////////
+// SOLUTION 2
+function findSmallestInt(array) {
+  return array.reduce((smallest, int) => {
+    return int < smallest ? int : smallest;
+  }, Infinity);
+}
+
+///////////////////////////////////////////////////////
+// SOLUTION 3
+function findSmallestInt(array) {
+  return Math.min(...array);
+}
   ```
 
 </p>
@@ -174,46 +174,50 @@ toCamelCase("The_Stealth_Warrior") // returns "TheStealthWarrior"
   <p>
 
   ```javascript
-  // inelegant solution (still a solution!)
-  function toCamelCase(str){
-    var strArray;
+// SOLUTION 1
+function toCamelCase(phrase) {
+  // If phrase contains - split on -
+  let splitChar = '';
+  if (phrase.includes('-')) {
+    splitChar = '-';
+    // If phrase contains _ split on _
+  } else if (phrase.includes('_')) {
+    splitChar = '_';
+  }
 
-    if (str.indexOf('-') !== -1){ //if delineated by -
-      strArray = str.split('-');
-    } else {
-      strArray = str.split('_');  //if delineated by _
+  const words = phrase.split(splitChar);
+
+  // Loop through each word
+  const wordsWCaps = words.map((word, index) => {
+    // Capitalize first letter of each word
+    if (index === 0) {
+      return word;
     }
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
 
-    var camelCase = strArray[0]; //keeps first word value as is
+  // Join words and return
+  return wordsWCaps.join('');
+}
 
-    for (var i=1, len=strArray.length; i < len; i++){
-      var capitalized = strArray[i].substr(0, 1).toUpperCase() + strArray[i].slice(1);
-      camelCase += capitalized;
-    }
 
-    return camelCase;
-  }
+// convert string to array of words
+// Loop through array
+  // for each word after 1st, convert to capital casing
+  // join words into single string
 
-  // longform solution (3 functions)
-  function toCamelCase(str){
-    return str.split(/\-|_/).reduce(function(previous, current, index){ return camelize(previous, current, index);});
-  }
+// SOLUTION 2
+function toCamelCase(phrase) {
+  const words = phrase.split(/[-_]/);
 
-  function camelize(previous, current, index){
-    return previous + current.capitalizeFirstLetter();
-  }
+  const convertedWords = words.map((word, index) => {
+    if (!index) return word;
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
 
-  String.prototype.capitalizeFirstLetter = function() {
-      return this.charAt(0).toUpperCase() + this.slice(1);
-  }
+  return convertedWords.join('');
+}
 
-  // best solution
-  function toCamelCase(str){
-    var regExp=/[-_]\w/ig;
-    return str.replace(regExp,function(match){
-          return match.charAt(1).toUpperCase();
-     });
-  }
   ```
   </p>
 </details>
