@@ -38,7 +38,36 @@ findOdd([5,4,3,2,1,5,4,3,2,10,10]);
   <p>
 
 ```javascript
+
 // SOLUTION 1
+function findOddOccurrence(arrayOfNums) {
+  let oddOccuringNum = null;
+
+  // Loop through the array
+  for (let i = 0; i < arrayOfNums.length; i++) {
+    // for each interger
+
+    // find the number of occurences of that integer
+    let occurences = 0;
+
+    for (let j = 0; j < arrayOfNums.length; j++) {
+      if (arrayOfNums[j] === arrayOfNums[i]) {
+        occurences += 1;
+      }
+    }
+
+    // if occurrences is odd set oddOccuringNum to integer
+    if (occurences % 2 === 1) {
+      oddOccuringNum = arrayOfNums[i];
+    }
+  }
+
+  return oddOccuringNum;
+}
+
+
+///////////////////////////////////////////////////////
+// SOLUTION 2 - Using forEach
 function findOddOccurrence(array) {
   let oddOccuringNum = null;
 
@@ -64,7 +93,9 @@ function findOddOccurrence(array) {
   return oddOccuringNum;
 }
 
-// SOLUTION 2
+
+///////////////////////////////////////////////////////
+// SOLUTION 3
 // Loop through array
   // for each int
   // find number of occurrences
@@ -75,7 +106,7 @@ function findOddOccurrence(array) {
     return occurrences % 2 === 1;
   });
 }
-  ```
+```
 
 </p>
 </details>
@@ -112,6 +143,24 @@ function findSmallestInt(args) {
 
 ```javascript
 // SOLUTION 1
+function findSmallestInt(arrayOfNums) {
+
+  // start with smallest being first number in array
+  let smallestInt = arrayOfNums[0];
+
+  // Loop through array of numbers
+  for (let i = 0; i < arrayOfNums.length; i++) {
+    if (arrayOfNums[i] < smallestInt) {
+      smallestInt = arrayOfNums[i];
+    }
+  }
+
+  return smallestInt;
+}
+
+
+///////////////////////////////////////////////////////
+// SOLUTION 2
 function findSmallestInt(array) {
   let smallestInt = null;
 
@@ -131,7 +180,7 @@ function findSmallestInt(array) {
 }
 
 ///////////////////////////////////////////////////////
-// SOLUTION 2
+// SOLUTION 3
 function findSmallestInt(array) {
   return array.reduce((smallest, int) => {
     return int < smallest ? int : smallest;
@@ -139,7 +188,7 @@ function findSmallestInt(array) {
 }
 
 ///////////////////////////////////////////////////////
-// SOLUTION 3
+// SOLUTION 4
 function findSmallestInt(array) {
   return Math.min(...array);
 }
