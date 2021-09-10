@@ -1,6 +1,6 @@
 # findOdd
 
-[REPL](https://repl.it/@michaelpetty/findOdd#index.js)
+<!-- [REPL](https://repl.it/@michaelpetty/findOdd#index.js) -->
 
 Given an array, find the int that appears an odd number of times. Assume there will always be only one integer that appears an odd number of times.
 
@@ -115,7 +115,7 @@ function findOddOccurrence(array) {
 
 # Convert to CamelCase
 
-[REPL](https://repl.it/@michaelpetty/camelCase#index.js)
+<!-- [REPL](https://repl.it/@michaelpetty/camelCase#index.js) -->
 
 Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case).
 
@@ -187,7 +187,7 @@ function toCamelCase(phrase) {
 
 # Regex PIN Validator
 
-[REPL](https://repl.it/@michaelpetty/RegexPINValidator#index.js)
+<!-- [REPL](https://repl.it/@michaelpetty/RegexPINValidator#index.js) -->
 
 ATM machines allow 4 or 6 digit PIN codes and PIN codes cannot contain anything but exactly 4 digits or exactly 6 digits.
 
