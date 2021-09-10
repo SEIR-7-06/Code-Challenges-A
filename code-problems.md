@@ -1,4 +1,175 @@
-# findOdd
+## makePigLatin
+
+Write a function that takes in a sentence as a string and converts that sentence to pig latin. Every word in the sentence should be appended with 'ay'.
+
+For Example
+```js
+function makePigLatin(sentence) {
+  // write code here
+}
+```
+
+```js
+makePigLatin('good morning');
+// => 'gooday morningay'
+
+makePigLatin('I am a farm animal');
+// => 'Iay amay aay farmay animalay
+```
+
+<details>
+  <summary>Solutions</summary>
+
+  ```js
+  // SOLUTION 1 - USING THE MAP METHOD
+  function translateToPigLatin(phrase) {
+    const words = phrase.split(' ');
+
+    const pigLatinWords = words.map((word) => `${word}ay`);
+
+    return pigLatinWords.join(' ');
+  }
+
+  // SOLUTION 2 - USING A FOR LOOP
+  function translateToPigLatin(phrase) {
+    const words = phrase.split(' ');
+    
+    const pigLatinWords = [];
+
+    for (let i = 0; i < words.length; i++) {
+      const pigLatin = `${words[i]}ay`;
+
+      pigLatinWords.push(pigLatin);
+    }
+
+    return pigLatinWords.join(' ');
+  }
+  ```
+</details>
+
+### Hungry for More
+
+- For words that end in a consonant, append them with `way` instead of `ay`.
+
+<hr>
+
+## getBetween
+
+Write a function that takes 2 integers and returns an array of all the integers between the input parameters, including the 2 parameters.
+
+For example
+```js
+function getBetween(lowest, highest) {
+  // write code here
+}
+```
+
+```js
+getBetween(1, 5);
+// => [1, 2, 3, 4, 5]
+
+getBetween(3, 6);
+// => [3, 4, 5, 6]
+```
+
+<details>
+  <summary>Solutions</summary>
+
+  ```js
+  function getNumsArray(lowest, highest) {
+    let newArray = [];
+
+    for (let i = lowest; i <= highest; i++) {
+      newArray.push(i);
+    }
+
+    return newArray;
+  }
+  ```
+</details>
+
+### Hungry for More
+
+- Have your function throw an error if the first parameter is greater than the second parameter.
+- Have your function throw an error if both of the parameters are not integers.
+- Have your function throw an error if one of the parameters is a negative integer.
+
+
+<hr>
+
+## Convert to CamelCase
+
+<!-- [REPL](https://repl.it/@michaelpetty/camelCase#index.js) -->
+
+Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case).
+
+Examples:
+```javascript
+toCamelCase("the-stealth-warrior") // returns "theStealthWarrior"
+
+toCamelCase("The_Stealth_Warrior") // returns "TheStealthWarrior"
+```
+
+<hr>
+
+## Solution
+
+<details>
+  <summary>Click here to reveal a possible solution.</summary>
+  <p>
+
+  ```javascript
+// SOLUTION 1
+function toCamelCase(phrase) {
+  // If phrase contains - split on -
+  let splitChar = '';
+  if (phrase.includes('-')) {
+    splitChar = '-';
+    // If phrase contains _ split on _
+  } else if (phrase.includes('_')) {
+    splitChar = '_';
+  }
+
+  const words = phrase.split(splitChar);
+
+  // Loop through each word
+  const wordsWCaps = words.map((word, index) => {
+    // Capitalize first letter of each word
+    if (index === 0) {
+      return word;
+    }
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
+
+  // Join words and return
+  return wordsWCaps.join('');
+}
+
+
+// convert string to array of words
+// Loop through array
+  // for each word after 1st, convert to capital casing
+  // join words into single string
+
+// SOLUTION 2
+function toCamelCase(phrase) {
+  const words = phrase.split(/[-_]/);
+
+  const convertedWords = words.map((word, index) => {
+    if (!index) return word;
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
+
+  return convertedWords.join('');
+}
+
+  ```
+  </p>
+</details>
+
+<hr>
+
+## findOdd
 
 <!-- [REPL](https://repl.it/@michaelpetty/findOdd#index.js) -->
 
@@ -113,83 +284,11 @@ function findOddOccurrence(array) {
 
 <hr>
 
-# Convert to CamelCase
-
-<!-- [REPL](https://repl.it/@michaelpetty/camelCase#index.js) -->
-
-Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case).
-
-Examples:
-```javascript
-toCamelCase("the-stealth-warrior") // returns "theStealthWarrior"
-
-toCamelCase("The_Stealth_Warrior") // returns "TheStealthWarrior"
-```
-
-<hr>
-
-## Solution
-
-<details>
-  <summary>Click here to reveal a possible solution.</summary>
-  <p>
-
-  ```javascript
-// SOLUTION 1
-function toCamelCase(phrase) {
-  // If phrase contains - split on -
-  let splitChar = '';
-  if (phrase.includes('-')) {
-    splitChar = '-';
-    // If phrase contains _ split on _
-  } else if (phrase.includes('_')) {
-    splitChar = '_';
-  }
-
-  const words = phrase.split(splitChar);
-
-  // Loop through each word
-  const wordsWCaps = words.map((word, index) => {
-    // Capitalize first letter of each word
-    if (index === 0) {
-      return word;
-    }
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  });
-
-  // Join words and return
-  return wordsWCaps.join('');
-}
-
-
-// convert string to array of words
-// Loop through array
-  // for each word after 1st, convert to capital casing
-  // join words into single string
-
-// SOLUTION 2
-function toCamelCase(phrase) {
-  const words = phrase.split(/[-_]/);
-
-  const convertedWords = words.map((word, index) => {
-    if (!index) return word;
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  });
-
-  return convertedWords.join('');
-}
-
-  ```
-  </p>
-</details>
-
-<hr>
-
 # Regex PIN Validator
 
 <!-- [REPL](https://repl.it/@michaelpetty/RegexPINValidator#index.js) -->
 
-ATM machines allow 4 or 6 digit PIN codes and PIN codes cannot contain anything but exactly 4 digits or exactly 6 digits.
+ATM machines allow 4 or 6 digit PIN codes and PIN codes cannot contain anything but exactly 4 digits or exactly 6 digits. All digits must be numbers between 1 and 9.
 
 If the function is passed a valid PIN string, return true, else return false.
 
